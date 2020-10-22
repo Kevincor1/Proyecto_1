@@ -22,9 +22,9 @@ def Vpot(x):  # Pozo de potencial
 # In[156]:
 
 
-a = float(input('enter lower limit of the domain: '))
-b = float(input('enter upper limit of the domain: '))
-N = int(input('enter number of grid points: '))
+a = float(input('limite inferior: '))
+b = float(input(':limite superior '))
+N = int(input('numero de pasos: '))
 
 
 # In[157]:
@@ -91,7 +91,7 @@ for i in range(len(z)):
     plt.xlabel('x', size=14)
     plt.ylabel('$\psi$(x)',size=14)
 plt.legend()
-plt.title('normalized wavefunctions for a harmonic oscillator using finite difference method',size=14)
+plt.title("normalized wavefunctions",size=14)
 plt.show()
 
 

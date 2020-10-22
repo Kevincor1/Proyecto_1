@@ -74,7 +74,7 @@ H = -T/(2*h**2) + V
 val,vec=np.linalg.eig(H)
 z = np.argsort(val)
 z = z[0:4]
-energies=(val[z]/val[0])
+energies=(val[z]/val[z][0])
 print(energies)
 
 

@@ -1,0 +1,483 @@
+\documentclass[9pt,twocolumn,twoside]{osajnl}
+
+\journal{jocn} 
+\usepackage[justification=centering]{caption}
+%paragraph indentation
+   
+% Pygments definitions
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+
+
+\usepackage{float}
+\setlength{\parindent}{0cm}
+%paragraph spacing
+\setlength{\parskip}{0.2cm}
+
+\setboolean{shortarticle}{false}
+
+\title{Solución numérica de la ecuación de Schrödinger 1D}
+
+
+
+\author[1,*]{Kevin Cortés G.}
+\author[1,**]{Santiago Quintero C.}
+
+\affil[1]{Facultad de ciencias exactas y naturales, Universidad de Antioquia, Calle 67 No 53-108, Medellín, Antioquia}
+
+\affil[*]{E-mail: kevin.cortes@udea.edu.co}
+\affil[**]{E-mail: santiago.quinteroc@udea.edu.co}
+
+
+\date{October 28, 2020}% It is always \today, today,
+
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
+
+
+\graphicspath{{Imagenes/}}
+
+\begin{abstract}
+En este trabajo, se presenta de manera detallada  un algoritmo en Python, para encontrar  las soluciones numéricas de la ecuación de Schrödinger unidimensional. Adicionalmente se emplea el método para obtener los autovalores de energía y las funciones de onda de los estados ligados de sistemas fisicos importantes con aplicaciones, tales como: un electrón confinado en un pozo finito e infinito, y la interacción de un muon con un nucleo de plomo.
+\newline
+
+\textbf{Palabras clave:} Ecuación de Schrödinger , solución numérica, pozo de potencial, oscilador armonico, mecánica cuántica, Python.
+\end{abstract}
+
+\setboolean{displaycopyright}{false}
+
+\raggedbottom
+
+\begin{document}
+
+\maketitle
+\section{INTRODUCCIÓN}
+En el Presente trabajo, se elabora en Python un programa basado en objetos para obtener soluciones de la ecuación de schrödinger 1D. Para la solución se usa el método de diferencias finitas, que permite llevar la ecuación diferencial a una ecuación matricial, que también es una ecuación de autovalores de la matriz hamiltoniana que resulta, además, usando el módulo linalg, de la libreria numpy de Python se obtiene  los autovalores y autovectores de la ecuación matricial de autovalores.\\ \\
+El articulo se encuentra organizado como sigue: en la sección II se introduce la ecuacion de Schrödinger, asi como algunas propiedades generales de las funciones de onda y de los autovalores de energía, en la sección III, se presenta el método numérico necesario para la solución, en la sección IV, se presenta el algoritmo, en la sección V, usando el algoritmo, se soluciona la ecuación de schrödinger para tres sistemas particulares y se analizan sus resultados, en la sección VI,  se discute la funcionalidad y generalidad del método, por ultimo en apéndice I se muestran las funciones de onda en diferentes tiempos de estados estacionarios superpuestos.
+
+\section{ECUACIÓN DE SCHRÖDINGER}
+
+La ecuacion de schrödinger, es una ecuación que describe la dinámica de un sistema mecánico cuántico, esta es:
+
+$$-\frac{\hbar^2}{2 m} \nabla^2 \Psi(\textbf{r},t) + V(\textbf{r})\Psi(\textbf{r},t)=i\hbar \frac{\partial\Psi(\textbf{r},t)}{\partial t}$$
+\par
+
+donde $V(\textbf{r})$ es el potencial de interaccíón que hay en el sistema, y $\Psi(\textbf{r},t)$ es la funcion de onda. \\ \\
+En el caso unidimensional, queda como sigue:
+\begin{equation}
+    -\frac{\hbar^2}{2 m} \frac{\partial^2 \Psi(z,t)}{\partial z^2} + V(z)\Psi(z,t)=i\hbar \frac{\partial\Psi(z,t)}{\partial t}
+\end{equation} \\ 
+usando el metodo de separación de variable, obtenemos que:
+
+\begin{equation}
+    \Psi(z,t)=\psi(z)e^{-iEt/\hbar}
+\end{equation} \\ 
+Donde $\psi(z)$ y $E$ son las autofunciones y autovalores respectivamente, que satisfacen la siguiente ecuación de autovalores: 
+
+\begin{equation}
+    -\frac{\hbar^2}{2 m} \frac{d^2 \psi(z)}{d z^2} + V(z)\psi(z)=E \psi(z)
+\end{equation} \\ 
+La anterior ecuación se conoce como la ecuación de schrödinger independiente del tiempo.\\ 
+La ecuación (3) también se puede escribir como:
+
+\begin{equation}
+    \hat{H}\Psi(z,t)=E\Psi(z,t)
+\end{equation}
+
+con $$\hat{H}= -\frac{\hbar^2}{2 m} \frac{d^2 }{d z^2} + V(z)$$
+\\
+conocido como el operador Hamiltoniano del sistema.
+\newline
+
+$\textbf{propiedades de}$ \hspace{} $ \Psi$ 
+\vspace{1mm} \\ \\
+La funcion de onda debe ser uniforme y continua en todo el espacio, incluso para los casos en que el potencial presenta discontinuidades, la función de onda y su derivada son continuas, y en las regiones del espacio donde $ V(z) = \infty$, \hspace{} $ \psi = 0$, por lo que la condicion de continuidad exige que la funcion de onda se anule en la frontera del dominio, y para  este caso las derivadas $\psi$ presentan una discontinuidad finita (ver \cite{Landau1983}). \\ \\
+sea $\Psi_1$ y $\Psi_2$ soluciones de la ecuación (1), entonces, la suma $\Psi_1+\Psi_2$ tambien es solucion de dicha ecuación, este es el llamado principio de superposición que es consecuencia de la linealidad de la ecuación (1). \\ \\
+El módulo cuadrado de la funcion de onda ($|\Psi|^2$) es una función densidad de probabilidad \\ \\
+$\textbf{propiedades de}$ \hspace{} $ E$ 
+\vspace{1mm} \\ \\
+Los autovalores de energía $E$ pueden ser continuos o discretos, degenerados o no. Además $E>V_{min}$. 
+\\ 
+En el caso unidimensional (Ec. (1)) ningún autovalor del espectro discreto es degenerado (ver \cite{Landau1983}) 
+\section{MÉTODO NUMÉRICO}
+
+El método empleado para la solución de la ecuación de Schrödinger 1D fue el de diferencias finitas junto con un análisis de autofunciones y autovectores de por el cual una ecuación diferencia parcial con valores de frontera puede solucionarse de forma rápida, el hecho que nos intereso resolver el problema no temporal facilito la construcción de la ecuación.
+
+Como primer paso se debe dividir la región en una rejilla (cantidades finitas de secciones o elementos de tamaño regular), generalmente se usan polinomios de un grado fijo para realizar la aproximación los cuales deben seccionarse conjuntamente que con el tratamiento adecuado conduce a un sistema lineal de ecuaciones \cite{RichardL.Burden}.
+
+Con un análisis parecido al abordado en \cite{PaulL1993} fue posible llevar (Ec. (3)) a una forma de diferencias finitas, por lo tanto, nuestro problema se convirtió en solucionar la siguiente ecuación: $$ - \frac{\hbar^2}{2m} \frac{\psi_{i+1} - 2\psi_{i} + \psi_{i-}}{h^2} + V_i \psi_{i-1} = E \psi_{i}$$ , donde i se mueve en todas las rejillas y h es el espaciamiento entre rejillas.
+
+La anterior ecuación puede llevarse a la siguiente forma matricial 
+
+\begin{equation}
+\begin{pmatrix}
+\frac{\hbar^2}{m} + V_1 & -\frac{\hbar^2}{2m} & ...\\
+ .&...  & \\
+ .& & \\
+ .& &\\
+ ...& -\frac{\hbar^2}{2m} & \frac{\hbar^2}{m} + V_N 
+\end{pmatrix}\begin{pmatrix}
+\psi_1 \\
+.\\
+.\\
+.\\
+\psi_N
+\end{pmatrix} = E\begin{pmatrix}
+\psi_1 \\
+.\\
+.\\
+.\\
+\psi_N
+\end{pmatrix}
+\end{equation}
+
+De (Ec. (3)) podemos hallar los posibles E y el vector: $$\begin{pmatrix}
+\psi_1 \\
+.\\
+.\\
+.\\
+\psi_N
+\end{pmatrix}$$ con el uso de numpy, en especifico con linalg.eig y así resolver ambos problemas en un mismo instante.
+
+\section{PROGRAMA}
+
+Para iniciar se creo una clase llamada Schrodinger la cual debe darse el intervalo donde se hallara la función de onda, el potencial que actuara sobre la partícula y su masa, en las siguientes lineas se vera como se construye el hamiltoniano y se halla la función de onda (autovalores) y la energía(autovectores), dicha construcción es se encuentra en el constructor de la clase.
+
+\begin{Verbatim}
+        \\
+        \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{x}\PY{o}{=}\PY{n}{np}\PY{o}{.}\PY{n}{linspace}\PY{p}{(}\PY{n}{a}\PY{p}{,}\PY{n}{b}\PY{p}{,}\PY{n}{N}\PY{p}{)}
+        \\
+        \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{m}\PY{o}{=}\PY{n}{m}
+        \\
+        \PY{n}{h} \PY{o}{=} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{x}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{\PYZhy{}}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{x}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+\\
+\PY{c+c1}{\PYZsh{}De la ecuación Construcción del hamiltaniano en}
+\PY{c+c1}{\PYZsh{}forma matricial obtenido de la diferencia finita de la ecuación de Schrödinger 1 \PYZhy{}D}
+\\
+
+        \PY{n}{T} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{p}{(}\PY{n}{N}\PY{o}{\PYZhy{}}\PY{l+m+mi}{2}\PY{p}{)}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{p}{)}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{n}{N}\PY{o}{\PYZhy{}}\PY{l+m+mi}{2}\PY{p}{,}\PY{n}{N}\PY{o}{\PYZhy{}}\PY{l+m+mi}{2}\PY{p}{)}
+        \\
+        \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{V\PYZus{}z}\PY{o}{=}\PY{n}{V}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{x}\PY{p}{)}
+        \\
+        
+        \PY{k}{for} \PY{n}{i} \PY{o+ow}{in}
+        \PY{n+nb}{range}\PY{p}{(}\PY{n}{N}\PY{o}{\PYZhy{}}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{:}
+        \\
+            \hspace*{1 cm}\PY{k}{for} \PY{n}{j} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{N}\PY{o}{\PYZhy{}}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{:}
+            \\
+               \hspace*{1 cm} \PY{k}{if} \PY{n}{i}\PY{o}{==}\PY{n}{j}\PY{p}{:}
+                   \\
+\hspace*{2 cm}\PY{n}{T}\PY{p}{[}\PY{n}{i}\PY{p}{,}\PY{n}{j}\PY{p}{]}\PY{o}{=} \PY{o}{\PYZhy{}}\PY{l+m+mi}{2}
+                   \\
+               \hspace*{1 cm} \PY{k}{elif}
+                \PY{n}{np}\PY{o}{.}\PY{n}{abs}\PY{p}{(}\PY{n}{i}\PY{o}{\PYZhy{}}\PY{n}{j}\PY{p}{)}\PY{o}{==}\PY{l+m+mi}{1}\PY{p}{:}
+                   \\
+ \hspace*{2 cm}\PY{n}{T}\PY{p}{[}\PY{n}{i}\PY{p}{,}\PY{n}{j}\PY{p}{]}\PY{o}{=}\PY{l+m+mi}{1}
+\\
+        \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{T} \PY{o}{=} \PY{n}{T}
+        \\
+        \PY{n}{V\PYZus{}i} \PY{o}{=}
+        \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{p}{(}\PY{n}{N}\PY{o}{\PYZhy{}}\PY{l+m+mi}{2}\PY{p}{)}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{p}{)}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{n}{N}\PY{o}{\PYZhy{}}\PY{l+m+mi}{2}\PY{p}{,}\PY{n}{N}\PY{o}{\PYZhy{}}\PY{l+m+mi}{2}\PY{p}{)}
+        \\
+        
+        \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{N}\PY{o}{\PYZhy{}}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{:}
+        \\
+           \hspace*{1 cm} \PY{k}{for} \PY{n}{j} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{N}\PY{o}{\PYZhy{}}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{:}
+            \\
+               \hspace*{1 cm} \PY{k}{if} \PY{n}{i}\PY{o}{==}\PY{n}{j}\PY{p}{:}
+                   \\ \hspace*{2 cm}\PY{n}{V\PYZus{}i}\PY{p}{[}\PY{n}{i}\PY{p}{,}\PY{n}{j}\PY{p}{]}\PY{o}{=}
+                  \PY{n}{V}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{x}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{)}
+                    \\
+        \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{V\PYZus{}i} \PY{o}{=} \PY{n}{V\PYZus{}i}
+        \\
+        \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{H} \PY{o}{=} \PY{o}{\PYZhy{}}\PY{l+m+mf}{0.5}\PY{o}{*}\PY{p}{(}\PY{n}{hbar}\PY{p}{)}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2} \PY{o}{/} \PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{m}\PY{p}{)}\PY{o}{*}\PY{n}{v\PYZus{}c}\PY{o}{*}\PY{o}{*}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)} \PY{o}{*}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{T}\PY{o}{/}\PY{p}{(}\PY{n}{h}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{p}{)} \PY{o}{+} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{V\PYZus{}i}
+\\
+\vspace{}
+\PY{c+c1}{\PYZsh{}Se usa la librería linalg para no hallar las autodunciones y autovectores de H}
+\\
+        \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{val}\PY{p}{,}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{vec}\PY{o}{=}\PY{n}{np}\PY{o}{.}\PY{n}{linalg}\PY{o}{.}\PY{n}{eig}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{H}\PY{p}{)}
+        \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{energia}\PY{o}{=}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{val}\PY{p}{[}\PY{n}{np}\PY{o}{.}\PY{n}{argsort}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{val}\PY{p}{)}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{:}\PY{l+m+mi}{4}\PY{p}{]}
+        \\
+\vspace{}
+\\
+\PY{c+c1}{\PYZsh{}Sort, para asegura que las autofunciones y los autovalores hallados se encuentren en orden}
+\end{Verbatim}
+\\ \\
+Luego de tener la energía y la función de onda se creó un método el cual gráfica la función de onda y su módulo al cuadrado contra la posición y para tener el intervalo correcto se añadió un cero al inicio y al final del arreglo de autofunciones para poder tener el tamaño correcto y que en los extremos($-\infty$ y $\infty$) se anule la función de onda.
+
+\section{SISTEMAS PARTICULARES}
+Aplicaremos el algoritmo a tres potenciales fundamentales e importantes en física, estos son: el pozo finito de potencial, el pozo infinito de potencial y el oscilador armónico; cada uno de estos, modelando un sistema físico. Los potenciales están dados por:\\  \\
+Pozo finito:
+
+\vspace{-8mm} 
+\begin{equation}
+    V(z)= \left\{ \begin{array}{lcc}
+             0 &   \hspace{}  & |z| \leq a/2 \\
+             \\ V_0 &  \hspace{} & |z| > a/2
+             \end{array}
+   \right.
+\end{equation}
+\\
+Pozo infinito:
+
+\vspace{-7mm} 
+\begin{equation}
+    V(z)= \left\{ \begin{array}{lcc}
+             0 &   \hspace{}  & |z| \leq a/2 \\
+             \\ \infty &  \hspace{} & |z| > a/2
+             \end{array}
+   \right.
+\end{equation}
+\\ \\
+Oscilador armónico:
+\vspace{-5mm} 
+\begin{equation}
+    V(z)=\frac{1}{2}m\omega^2 z^2
+\end{equation} \\ \\
+$\textbf{a.  Electrón en un pozo finito}$
+\\ \\
+Vamos a modelar este sistema con un pozo finito de potencial, ecuación (7).
+Los parametros para este sistema son
+
+\begin{table}[h!]
+\Centering
+\begin{tabular}{ |p{2.0cm}|p{2.0cm}|p{2.0cm}|  }
+ \hline
+ \multicolumn{3}{|c|}{Parametros } \\
+ \hline
+ Masa [MeV/$c^2$] & $V_0$ [eV] &  $a$ (ancho del pozo) [m]\\[0.2ex] 
+ \hline
+ 0.51099   &   100  & $2$x$10^{-10}$ \\[0.1ex]
+\hline
+\end{tabular}
+\caption{Parametros para el modelo del electrón confinado}
+\end{table}
+Los autovalores de energia obtenidos numericamente, comparados con el potencial se pueden ver en la siguente imagen \par
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.54]{NEP.PNG}
+    \caption{Niveles de Energia del electrón confinado en un pozo finito de potencial}
+    \label{fig:my_label}
+\end{figure}
+\\
+Observe que el estado fundamental es $E_1=6.54$ eV, que se aproxima bien a su valor teórico: $6.58$ eV  (ver \cite{RaymondA2005}) \\ \\
+Grafiquemos las autofunciones (funciones de onda) obtenidas y su modulo cuadrado asociadas a cada autovalor de energía.
+\\
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.285]{funciones de onda.png}
+    \caption{Funciones de onda normalizadas y su modulo cruadrado}
+    \label{fig:my_label}
+\end{figure}
+\\
+Observe que  para las regiones fuera del pozo a medida que nos alejamos del pozo, las funciones de onda decaen a $0$ como una exponencial tal como en la teoria, además se ve que hay dos funciones pares y dos impares, esta paridad es debida a la simetria del pozo respecto al origen. Cabe mencionar que este sistema con el valor que se escogio para $V_0=100$ eV, solo posee 4 autovalores de energía, veremos a continuación el pozo infinito, el cual posee infinitos autovalores de energía de los cuales vamos a ver los cuatro primeros \\ 
+
+$\textbf{b. Electrón confinado}$ \\ \\
+Para modelar el confinamiento del electrón, tomaremos los mismos parametros del problema anterior a excepción de $V_0$ el cual tiene que ser muy grande para las escalas del sistema, tomaremos entonces $V_0=1200$ eV. Usemos el algoritmo para hallar sus autovalores y autofunciones.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.525]{energia.png}
+    \caption{Niveles de energia}
+    \label{fig:my_label}
+\end{figure}
+\\
+Los valores hallados para la energía satisfacen con una muy buena precisión la razón entre el n-esimo autovalor y el estado fundamental, $E_1$, tal como en la teoria; Dicha razón esta dada por:
+$$\frac{E_n}{E_1}=2n+1$$
+Esta expresión es dada por la teoria. \\
+veamos ahora las funciones de onda.
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.265]{autof.png}
+    \caption{funciones de onda y densidades de probabilidad}
+    \label{fig:my_label}
+\end{figure}
+Observe que a diferencia del sistema anterior las autofunciones son cero en las regiones fuera del pozo, los que es consistente con lo mencionado sobre las propiedades de la funcion de onda en la sección II. \\ \\
+$\textbf{c. Átomo muonico pesado.}$ \\ \\
+La interacción de un muon con un núcleo atómico mediante a un campo Coulombiano puede formar un estado ligado con el nucleo. La cosntitucion de este sistema se llama átomo muónico.
+Para este sistema vamos a ver la interacción de un muon con un núcleo de plomo, cuyo número atomico es: $Z=82$, y con radio no despreciable del orden de $8.5$x$10^{-15}m$. (ver \cite{Tannoudji}) \\
+Este sistema es un poco mas complicado debido a que el radio de Bohr del muon es del mismo orden que el radio de plomo, por lo que ya no podemos considerar el núcleo como puntual, tal como en el átomo de hidrogeno.
+Para modelar entonces este problema tenemos que para distancias menores al radio del núcleo de plomo la interacción muon-núcleo va estar dada  por el potencial de un oscilador armónico [Ec (7)] y para distancias mayores al radio del nucleo con un potencial de Coulomb $V \sim 1/r$.\\
+Vamos a considerar acá solo la interacción para distancias menores a el radio del nucleo. es decir la que esta dada por un potencial armónico.
+\begin{table}[h!]
+\Centering
+\begin{tabular}{ |p{2.8cm}|p{2.8cm}|p{2.4cm}|  }
+ \hline
+ \multicolumn{3}{|c|}{Parametros } \\
+ \hline
+ Masa [MeV/$c^2$] & $\omega$ [rad/seg] &   dominio [$10^{-15}$ m]\\[0.1ex] 
+ \hline
+ 105.77   &   $1.3$x$10^{22}$  &  $[-8.5$, 8.5$]$ \\[0.1ex]
+\hline
+\end{tabular}
+\caption{Parametros del sistema}
+\end{table}
+La frecuncia angular del sistema depende del radio del núcleo, este ultimo asumimos que es una esfera con una carga distribuida uniformemente. La masa es del muon es $207$ veces la masa del electrón, que correponde al valor que hay en la primera columna de la tabla anterior, el dominio en el que es valido el potencial que vamos a estudiar tiene asociado una rango de energía, para los autovalores, entre $0$ y $7.2 Mev$.\\
+Calculemos los autovalores y autofunciones en para este dominio.
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.525]{osp.png}
+    \caption{Niveles de energía}
+    \label{fig:my_label}
+\end{figure}
+Encontramos un solo autovalor ($E_1=4.2$ MeV) en este dominio, ya que para energías mayores a $7.1$ Mev debemos obtener los autovalores con un potencial de Coulomb. decimos que $E_1$ es el estado fundamental del la interacción muon-núcleo.\\
+La función de onda y la densidad de probabilidad del estado fundamental son:
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.325]{funos.png}
+    \caption{función de onda Normalizada y densidad de probabilidad del estado fundamental}
+    \label{fig:my_label}
+\end{figure}
+se observa que esta función densidad de probabilidad  es una función gaussiana tal como el estado fundamental del oscilador armonico
+
+\section{CONCLUSIONES}
+
+El algoritmo funciona y  coincide con los resultados obtenidos analíticamente para cualquier potencial, dicho potencial, como mostramos en la sección anterior; el algoritmo es por tanto un método para solucionar la ecuación de schrödinger unidimensional, es decir basta con evaluar un potencial para obtener las autofunciones y los autovalores de energia, dicho potencial se trabaja en unidades de [eV], pero con un pequeño cambio se puede trabajar en las unidades que se deseen.
+
+
+
+
+
+\section*{APÉNDICE: Evolución temporal de una superposición de estados estacionarios.} 
+Cualquier estado se puede describir como la combinación lineal de las autofunciones del sistema, asi por ejemplo en el ejemplo V-a cualquier estado dentro del pozo finito puede describirse como una combinación lineal de las cuatros autofunciones halladas.\\
+La evolución temporal de los estados estacionarios esta dado por la ecuación (2).\\ \\
+Veamos la evolución temporal de la superposión de estados estacionarios del sistema estudiado en V-a (electrón en un pozo finito). \\
+supongamos que en un instante $t=0$ se prepara el sistema de tal forma que su estado esta descrito por la siguiente funcíon de onda:
+$$\phi(z,0)=c_1\psi_1(z)+c_2\psi_2(z)+c_3\psi_3(z)+c_4\psi_4(z)$$ \\
+donde los $\psi_n(z)$ son las autofunciones normalizadas del sistema.\\
+La  evolución temporal $\phi(z,t)$ va a estar dada por (2): \\
+$$\phi(z,t)=c_1\Psi_1(z,t)+c_2\Psi_2(z,t)+c_3\Psi_3(z,t)+c_4\Psi_4(z,t)$$ \\
+es decir:
+$$\phi(z,t)= \sum_{n=1}^4 c_n\psi_n(z)e^{-iE_nt/\hbar}$$ \\
+Ahora escojamos unos coeficientes $c_n$ de tal forma que $\phi(z,t)$ este normalizada para todo t. Estos son:\\ \\
+$c_1=\frac{3}{\sqrt{30}}$, \hspace{} $c_2=\frac{1}{\sqrt{30}}$, \hspace{}
+$c_3=\frac{2}{\sqrt{30}}$ \hspace{} y  \hspace{}
+$c_4=\frac{4}{\sqrt{30}}$
+
+a continuación se muestran las gráficas (Fig 7) de la parte real de $\phi$ y la densidad de probabilidad ($|\phi|^2$) asociada a este estado en los tiempos $t=0, 2 , 4, 6$ seg
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.295]{descarga.png}
+    \caption{parte real y modulo cuadrado de $\phi$ en diferentes instantes de tiempo}
+    \label{fig:my_label}
+\end{figure}
+\\
+$\textbf{Pozo infinito}$ \\
+Tomemos la mismos coeficientes y los mismos tiempos para obtener un  estado pero en el sistema, V-b es decir en el pozo infinito de potencial, veamos la función de onda de la superposición y su densidad de probabilidad (FIG 8), y comparemos con el caso anterior.
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.295]{superp.png}
+    \caption{parte real y modulo cuadrado de $\phi$ en diferentes instantes de tiempo}
+    \label{fig:my_label}
+\end{figure}
+
+tal como los estados estacionarios del pozo infinito, la superposición de estos da una función de onda que también se anula afuera del pozo, a diferencia del la superposición del pozo finito (FIG 7)
+
+
+
+
+
+
+
+
+\bibliographystyle{unsrt}
+\bibliography{sample.bib}
+
+\end{document}
